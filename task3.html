@@ -68,20 +68,11 @@ function useRequest(url, callback) {
       
       let image = document.querySelector('.card');
       
-      // let urlPicture = 'https://picsum.photos/v2/list?limit=';
-      // if(urlPicture.charAt(36) === 1)
-      //limitFoto();
-      useRequest('https://picsum.photos/v2/list?limit=10', displayResult);
+      useRequest('https://picsum.photos/v2/list?limit='+value,displayResult);
     }
    }); 
 
-    // function limitFoto(){
-        
-    //     console.log(value);
-    // }
-
-    
-
+  
    const resultNode = document.querySelector('.j-result');
 
    function displayResult(apiData) {
