@@ -41,9 +41,11 @@ function useRequest(url, callback) {
       }
     }
   };
+
   xhr.onerror = function() {
     console.log('Ошибка! Статус ответа: ', xhr.status);
   };
+
   xhr.send();
 };
 
@@ -51,8 +53,7 @@ function useRequest(url, callback) {
    const btn = document.querySelector("button")
 
    btn.addEventListener("click", () => {
-
-    const value = document.querySelector('input').value;
+      const value = document.querySelector('input').value;
     
     if(value <1 || value > 10){
       let message = document.querySelector('.message');
@@ -76,9 +77,9 @@ function useRequest(url, callback) {
    const resultNode = document.querySelector('.j-result');
 
    function displayResult(apiData) {
-  let cards = '';
+    let cards = '';
   
-  apiData.forEach(item => {
+   apiData.forEach(item => {
     const cardBlock = `<div class="card">
       <img src="${item.download_url}" class="card-image"/>
         <p>${item.author}</p>
