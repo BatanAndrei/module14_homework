@@ -53,10 +53,10 @@ function useRequest(url, callback) {
    btn.addEventListener("click", () => {
 
     const value = document.querySelector('input').value;
-
+    
     if(value <1 || value > 10){
       let message = document.querySelector('.message');
-
+      
       message.innerText = 'число вне диапазона от 1 до 10';
 
       resultNode.innerHTML = '';
@@ -65,17 +65,22 @@ function useRequest(url, callback) {
       let message = document.querySelector('.message');
 
       message.innerText = '';
-
+      
       let image = document.querySelector('.card');
-
+      
       // let urlPicture = 'https://picsum.photos/v2/list?limit=';
       // if(urlPicture.charAt(36) === 1)
-
+      //limitFoto();
       useRequest('https://picsum.photos/v2/list?limit=10', displayResult);
     }
    }); 
 
+    // function limitFoto(){
+        
+    //     console.log(value);
+    // }
 
+    
 
    const resultNode = document.querySelector('.j-result');
 
