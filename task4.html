@@ -52,7 +52,7 @@
             method: 'GET',
             mode: 'cors'
         };
-        fetch('https://picsum.photos/v2/list?limit=5')
+        fetch('https://picsum.photos/v2/list?limit=5', options)
         .then((response) => {
         console.log('response', response);
         return response.json();
