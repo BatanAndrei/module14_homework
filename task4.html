@@ -60,7 +60,8 @@
         .then((data) => {
 
             let cards = '';
-  
+            const resultNode = document.querySelector('.j-result');
+
         data.forEach(item => {
         const cardBlock = `<div class="card">
         <img src="${item.download_url}" class="card-image"/>
@@ -73,26 +74,8 @@
         console.log('data', data);
         })
         .catch(() => { console.log('error') });
-      //useRequest('https://picsum.photos/v2/list?limit='+value,displayResult);
     }
    }); 
-
-  
-   const resultNode = document.querySelector('.j-result');
-
-   function displayResult(apiData) {
-//     let cards = '';
-  
-//    apiData.forEach(item => {
-//     const cardBlock = `<div class="card">
-//       <img src="${item.download_url}" class="card-image"/>
-//         <p>${item.author}</p>
-//       </div>`;
-
-//     cards = cards + cardBlock;
-//   });
-//   resultNode.innerHTML = cards;
-}
 
   </script>
 </body>
