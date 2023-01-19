@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- <link rel="stylesheet" href="style.css"> -->
+  <title>Задание 4</title>
+  <style>
+    .card {
+  width: 300px;
+  margin: 20px;
+}
+
+.card-image {
+  display: block;
+  width: 300px;
+  height: 300px;
+}
+
+  </style>
+</head>
+<body>
+  <input class="left" type="text" size="10">
+  <input class="right" type="text" size="10">
+  <button type="submit">Отправить</button>
+  <div class="message"></div>
+  <div class="result j-result"></div>
+  <script>
+
+// function useRequest(url, callback) {
+//   var xhr = new XMLHttpRequest();
+//   xhr.open('GET', url, true);
+  
+//   xhr.onload = function() {
+//     if (xhr.status != 200) {
+//       console.log('Статус ответа: ', xhr.status);
+//     } else {
+//       const result = JSON.parse(xhr.response);
+//       if (callback) {
+//         callback(result);
+//       }
+//     }
+//   };
+
+//   xhr.onerror = function() {
+//     console.log('Ошибка! Статус ответа: ', xhr.status);
+//   };
+
+//   xhr.send();
+// };
+
+
+   const btn = document.querySelector("button")
+
+   btn.addEventListener("click", () => {
+      const valueLeft = document.querySelector('.left').value;
+      const valueRight = document.querySelector('.right').value;
+    
+    if(valueLeft <100 || valueLeft > 300 || valueRight <100 || valueRight > 300){
+      let message = document.querySelector('.message');
+      
+      message.innerText = 'одно из чисел вне диапазона от 100 до 300';
+
+      resultNode.innerHTML = '';
+    
+    }else if(valueLeft >= 100 || valueLeft <= 300 || valueRight >= 100 || valueRight <= 300){
+      let message = document.querySelector('.message');
+
+      message.innerText = '';
+      
+      let image = document.querySelector('.card');
+      
+      const options = {
+            method: 'GET',
+            mode: 'cors'
+        };
+        fetch('https://picsum.photos/v2/list?limit=5', options)
+        .then((response) => {
+        console.log('response', response);
+        return response.json();
+        })
+        .then((data) => {
+        console.log('data', data);
+        })
+        .catch(() => { console.log('error') });
+      //useRequest('https://picsum.photos/v2/list?limit='+value,displayResult);
+    }
+   }); 
+
+  
+   const resultNode = document.querySelector('.j-result');
+
+   function displayResult(apiData) {
+    let cards = '';
+  
+   apiData.forEach(item => {
+    const cardBlock = `<div class="card">
+      <img src="${item.download_url}" class="card-image"/>
+        <p>${item.author}</p>
+      </div>`;
+
+    cards = cards + cardBlock;
+  });
+  resultNode.innerHTML = cards;
+}
+
+  </script>
+</body>
+</html>
