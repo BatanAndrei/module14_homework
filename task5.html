@@ -59,12 +59,14 @@
 
  if (valueUp < 1 || valueUp > 10 || isNaN(valueUp) || !valueUp){
      message_number.innerText = 'Номер страницы вне диапазона от 1 до 10';
+     //resultNode.innerHTML = '';
  }else{
     message_number.innerText = "";
  }
 
  if (valueDown < 1 || valueDown > 10 || isNaN(valueDown) || !valueDown){
     message_limit.innerText = 'Лимит вне диапазона от 1 до 10';
+    //resultNode.innerHTML = '';
  }else{
     message_limit.innerText = "";
  }
@@ -73,6 +75,7 @@
     message.innerText = 'Номер страницы и лимит вне диапазона от 1 до 10';
     message_number.innerText = "";
     message_limit.innerText = "";
+    //resultNode.innerHTML = '';
  }else{
      message.innerText = "";
  }
@@ -85,7 +88,7 @@
             method: 'GET',
             mode: 'cors'
         };
-        fetch('https://picsum.photos/v2/list?page='+valueUp+'&limit='+valueDown, options)
+        fetch(`https://picsum.photos/v2/list?page=${valueUp}&limit=${valueDown}`, options)
         .then((response) => {
       
         console.log('response', response);
@@ -111,6 +114,8 @@
         console.log('data', data);
         })
         .catch(() => { console.log('error') });
+    }else {
+        //resultNode.innerHTML = '';
     }
  
     });
