@@ -35,11 +35,11 @@
       const valueLeft = document.querySelector('.left').value;
       const valueRight = document.querySelector('.right').value;
       const resultNode = document.querySelector('.j-result');
-    
-    if(valueLeft <100 || valueLeft > 300 || valueRight <100 || valueRight > 300){
       let message = document.querySelector('.message');
-      
-      message.innerText = 'одно из чисел вне диапазона от 100 до 300';
+
+    if(valueLeft <100 || valueLeft > 300 || valueRight <100 || valueRight > 300 || isNaN(valueLeft) || isNaN(valueRight)){
+        
+      message.innerText = 'Одно из чисел вне диапазона от 100 до 300';
 
       resultNode.innerHTML = '';
     
