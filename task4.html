@@ -17,15 +17,14 @@
   display: block;
   /* width:300px;
   height: 300px; */
-  
 }
 
   </style>
 </head>
 <body>
-  <input class="left" type="text" size="10">
-  <input class="right" type="text" size="10">
-  <button type="submit">Отправить</button>
+  <input class="left" type="text" size="10" placeholder="ширина">
+  <input class="right" type="text" size="10" placeholder="высота">
+  <button type="submit">Запрос картинки</button>
   <div class="message"></div>
   <div class="result j-result"></div>
   <script>
@@ -57,7 +56,7 @@
         };
         fetch('https://picsum.photos/'+valueLeft+'/'+valueRight, options)
         .then((response) => {
-            
+
         const cardBlock = `<div class="card">
         <img src="${response.url}" class="card-image"/>
         </div>`;
