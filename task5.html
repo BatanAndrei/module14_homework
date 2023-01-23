@@ -55,27 +55,12 @@
                <button class="but" type="submit">Запрос</button>
                </div>
                   <div class="message color"></div> 
-                  <div class="result j-result"></div>
+                  <div class="result j-result" id="pages"></div>
                 
        <script>
 
       const btn = document.querySelector("button");
 
-      areaUp.value = localStorage.getItem('areaUp');
-    areaUp.oninput = () => {
-      localStorage.setItem('areaUp', areaUp.value)
-    };
-
-    areaDown.value = localStorage.getItem('areaDown');
-    areaDown.oninput = () => {
-      localStorage.setItem('areaDown', areaDown.value)
-    };
-
-    //  areaS.value = localStorage.getItem('areaS');
-    // areaS.oninput = () => {
-    //   localStorage.setItem('areaS', areaS.value)
-    // };
-      
    btn.addEventListener("click", () => {
 
       let message_number = document.querySelector('.message_number');
@@ -84,9 +69,8 @@
       const resultNode = document.querySelector('.j-result');
       const valueUp = document.querySelector('.up').value;
       const valueDown = document.querySelector('.down').value;
+      
      
-      console.log(valueUp)
-      console.log(valueDown)
 
  if (valueUp < 1 || valueUp > 10 || isNaN(valueUp) || !valueUp){
      message_number.innerText = 'Номер страницы вне диапазона от 1 до 10';
@@ -110,7 +94,6 @@
 
 if ((valueUp >= 1 && valueUp <= 10) && (valueDown >= 1 && valueDown <= 10)){
 
-    let image = document.querySelector('.card');
 
     const params = new URLSearchParams(window.location.search);
     params.set('page', valueUp);
@@ -124,10 +107,10 @@ if ((valueUp >= 1 && valueUp <= 10) && (valueDown >= 1 && valueDown <= 10)){
         fetch(`https://picsum.photos/v2/list?${resultUrl}`, options)
         .then((response) => {
       
-        console.log('response', response);
+        //console.log('response', response);
 
         const result = response.json();
-        console.log('result', result);
+        //console.log('result', result);
         return result;
         })
         .then((data) => {
@@ -139,11 +122,45 @@ if ((valueUp >= 1 && valueUp <= 10) && (valueDown >= 1 && valueDown <= 10)){
         <img src="${item.download_url}" class="card-image"/>
         <p>${item.author}</p>
         </div>`;
-
+        //console.log(cardBlock);
         cards = cards + cardBlock;
  });
+        let urls ='';
+
+        data.forEach(item => {
+        const onlyUrl = `${item.download_url},`;
+
+        urls = urls + onlyUrl;
+        //console.log(urls);
+
+        let arr = urls.split(',');
+        arr.pop();
+
+        localStorage.setItem('arr', JSON.stringify(arr))
+        //console.log(arr);
+        //let beackUrl = JSON.parse(localStorage.getItem('arr'))
+        //console.log(beackUrl);
+         
+        let block = '';
+
+        if(localStorage.getItem("arr")!= null){
+
+        //console.log(localStorage.getItem('arr'));
+        let beackUrl = localStorage.getItem('arr')
+        let final = `<div class="card">
+        <img src=${beackUrl} class="card-image"/></div>`;
+
+        block = block + final;
+        console.log(block);
+
+            
+            //console.log('YES');
+        }else{console.log('no')}
+       
+        });
+
         resultNode.innerHTML = cards;
-        console.log(resultNode);
+
         console.log('data', data);
         })
         .catch(() => { console.log('error') });
@@ -154,7 +171,7 @@ if ((valueUp >= 1 && valueUp <= 10) && (valueDown >= 1 && valueDown <= 10)){
     }
  
     });
-
+    
   </script>
 </body>
 </html>
