@@ -145,7 +145,6 @@ if ((valueUp >= 1 && valueUp <= 10) && (valueDown >= 1 && valueDown <= 10)){
 
         if(localStorage.getItem("arr")!= null){
 
-        //console.log(localStorage.getItem('arr'));
         let beackUrl = localStorage.getItem('arr')
         let final = `<div class="card">
         <img src=${beackUrl} class="card-image"/></div>`;
@@ -153,9 +152,10 @@ if ((valueUp >= 1 && valueUp <= 10) && (valueDown >= 1 && valueDown <= 10)){
         block = block + final;
         console.log(block);
 
-            
             //console.log('YES');
-        }else{console.log('no')}
+        }else{
+            //console.log('no')
+    }
        
         });
 
