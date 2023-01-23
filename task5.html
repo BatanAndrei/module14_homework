@@ -26,36 +26,67 @@
     max-width: 200px;
 }
 
+.num, .lim {
+    margin-top: 20px;
+}
+
+.but{
+    width: 180px;
+    margin-top: 30px; 
+}
+
+.color{
+    color: red;
+}
   </style>
-</head>
-<body>
-    <div class="inputs">
-  <h4>Hомер страницы</h4>
-  <input class="up" type="text" size="10" placeholder="введите номер страницы">
-  <div class="message_number"></div>
-  <h4>Лимит</h4>
-  <input class="down" type="text" size="10" placeholder="введите количество">
-  <div class="message_limit"></div>
-  <h4>Запрос</h4>
-  <button type="submit">Запрос</button>
-</div>
-  <div class="message"></div> 
-  <div class="result j-result"></div>
-  <script>
+      </head>
+          <body>
+             <div class="inputs">
+                 
+                    <lable class="num">Hомер страницы
+                    <input id="areaUp" class="up" type="text" size="20" placeholder="введите номер страницы" name="Hомер страницы">
+                    </lable>
+                <div class="message_number color"></div>
+                    <lable class="lim">Лимит
+                    <input id="areaDown" class="down" type="text" size="20" placeholder="введите количество" name="Лимит">
+                    </lable>
+                
+               <div class="message_limit color"></div>
+               <button class="but" type="submit">Запрос</button>
+               </div>
+                  <div class="message color"></div> 
+                  <div class="result j-result"></div>
+                
+       <script>
 
-   const btn = document.querySelector("button")
+      const btn = document.querySelector("button");
 
+      areaUp.value = localStorage.getItem('areaUp');
+    areaUp.oninput = () => {
+      localStorage.setItem('areaUp', areaUp.value)
+    };
+
+    areaDown.value = localStorage.getItem('areaDown');
+    areaDown.oninput = () => {
+      localStorage.setItem('areaDown', areaDown.value)
+    };
+
+    //  areaS.value = localStorage.getItem('areaS');
+    // areaS.oninput = () => {
+    //   localStorage.setItem('areaS', areaS.value)
+    // };
+      
    btn.addEventListener("click", () => {
-      const valueUp = document.querySelector('.up').value;
-      const valueDown = document.querySelector('.down').value;
-      const resultNode = document.querySelector('.j-result');
+
       let message_number = document.querySelector('.message_number');
       let message_limit = document.querySelector('.message_limit');
       let message = document.querySelector('.message');
-    
+      const resultNode = document.querySelector('.j-result');
+      const valueUp = document.querySelector('.up').value;
+      const valueDown = document.querySelector('.down').value;
+     
       console.log(valueUp)
       console.log(valueDown)
-    
 
  if (valueUp < 1 || valueUp > 10 || isNaN(valueUp) || !valueUp){
      message_number.innerText = 'Номер страницы вне диапазона от 1 до 10';
